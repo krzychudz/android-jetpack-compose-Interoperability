@@ -12,6 +12,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -34,7 +35,9 @@ class UserPreviewProvider : PreviewParameterProvider<User> {
         get() = sequenceOf(User(
             UserName("First", "Last"),
             UserPicture(null),
-            "tmpEmail@email.com"
+            "tmpEmail@email.com",
+            null,
+            null
         ))
 }
 
@@ -44,9 +47,9 @@ class UserPreviewProvider : PreviewParameterProvider<User> {
 @Composable
 @Preview
 fun ComposeScreen(viewModel: ComposeFragmentViewModel? = null, navController: NavController? = null) {
-    val peopleDataState = viewModel?.peopleData?.collectAsState()?.value
+    val peopleDataState = viewModel?.peopleData?.value
 
-    when(viewModel?.navigateToState?.collectAsState()?.value) {
+    when(viewModel?.navigateToState?.value) {
         ComposeFragmentViewModel.NavigateToState.ToDetailsFragment -> navController?.navigate(ComposeFragmentDirections.actionComposeFragmentToPersonDetailsComposeFragment())
     }
 
