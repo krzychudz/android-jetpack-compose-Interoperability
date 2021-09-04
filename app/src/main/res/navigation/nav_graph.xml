@@ -13,7 +13,9 @@
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            app:destination="@id/SecondFragment"
+            app:enterAnim="@anim/nav_slide_in"
+            app:popEnterAnim="@anim/nav_slide_out" />
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
@@ -22,18 +24,22 @@
         tools:layout="@layout/fragment_second">
         <action
             android:id="@+id/action_SecondFragment_to_composeFragment"
-            app:destination="@id/composeFragment" />
+            app:destination="@id/composeFragment"
+            app:enterAnim="@anim/nav_slide_in"
+            app:popEnterAnim="@anim/nav_slide_out" />
     </fragment>
     <fragment
         android:id="@+id/composeFragment"
         android:name="com.example.composeintegration.fragments.compose.people_list.ComposeFragment"
-        android:label="ComposeFragment" >
+        android:label="People List">
         <action
             android:id="@+id/action_composeFragment_to_personDetailsComposeFragment"
-            app:destination="@id/personDetailsComposeFragment" />
+            app:destination="@id/personDetailsComposeFragment"
+            app:enterAnim="@anim/nav_slide_in"
+            app:popEnterAnim="@anim/nav_slide_out" />
     </fragment>
     <fragment
         android:id="@+id/personDetailsComposeFragment"
         android:name="com.example.composeintegration.fragments.compose.person_details.PersonDetailsComposeFragment"
-        android:label="PersonDetailsComposeFragment" />
+        android:label="Person Details" />
 </navigation>

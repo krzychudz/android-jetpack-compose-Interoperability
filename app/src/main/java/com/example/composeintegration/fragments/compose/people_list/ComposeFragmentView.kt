@@ -84,7 +84,7 @@ fun PeopleDataSection(peopleDataState: PeopleDataUiState?, viewModel: ComposeFra
 fun PeopleDataList(data: List<User>, viewModel: ComposeFragmentViewModel?) {
     LazyColumn(
         contentPadding = PaddingValues(horizontal = 16.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp),
+        verticalArrangement = Arrangement.spacedBy(12.dp),
         modifier = Modifier.padding(vertical = 8.dp)) {
         items(data, itemContent = { item ->
             Person(item) {
@@ -103,7 +103,7 @@ fun Person(@PreviewParameter(UserPreviewProvider::class) data: User, onPressedCa
         .clickable {
             onPressedCallback?.invoke(data)
         },
-        elevation = 2.dp) {
+        elevation = 4.dp) {
         Row() {
             Image(
                 painter = rememberImagePainter(
