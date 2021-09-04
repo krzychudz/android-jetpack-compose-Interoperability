@@ -11,8 +11,6 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -37,6 +35,7 @@ class UserPreviewProvider : PreviewParameterProvider<User> {
             UserPicture(null),
             "tmpEmail@email.com",
             null,
+            null,
             null
         ))
 }
@@ -49,8 +48,10 @@ class UserPreviewProvider : PreviewParameterProvider<User> {
 fun ComposeScreen(viewModel: ComposeFragmentViewModel? = null, navController: NavController? = null) {
     val peopleDataState = viewModel?.peopleData?.value
 
-    when(viewModel?.navigateToState?.value) {
-        ComposeFragmentViewModel.NavigateToState.ToDetailsFragment -> navController?.navigate(ComposeFragmentDirections.actionComposeFragmentToPersonDetailsComposeFragment())
+    when(val navState = viewModel?.navigateToState?.value) {
+        is ComposeFragmentViewModel.NavigateToState.ToDetailsFragment -> {
+            navController?.navigate(ComposeFragmentDirections.actionComposeFragmentToPersonDetailsComposeFragment(navState.selectedPersonUUID))
+        }
     }
 
     LaunchedEffect(key1 = Unit) {
@@ -89,9 +90,11 @@ fun PeopleDataList(data: List<User>, viewModel: ComposeFragmentViewModel?) {
         contentPadding = PaddingValues(horizontal = 16.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
         modifier = Modifier.padding(vertical = 8.dp)) {
-        items(data, itemContent = { item ->
-            Person(item) {
-                viewModel?.navigateTo(ComposeFragmentViewModel.NavigateToState.ToDetailsFragment)
+        items(data, itemContent = { personData ->
+            Person(personData) {
+                viewModel?.navigateTo(ComposeFragmentViewModel.NavigateToState.ToDetailsFragment(
+                    personData.login?.uuid
+                ))
             }
         })
     }

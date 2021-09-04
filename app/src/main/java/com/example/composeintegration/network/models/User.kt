@@ -5,5 +5,6 @@ data class User(
     val picture: UserPicture?,
     val email: String?,
     val phone: String?,
-    val location: Location?
+    val location: Location?,
+    val login: Login?
 )

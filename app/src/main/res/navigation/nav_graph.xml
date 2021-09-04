@@ -41,5 +41,10 @@
     <fragment
         android:id="@+id/personDetailsComposeFragment"
         android:name="com.example.composeintegration.fragments.compose.person_details.PersonDetailsComposeFragment"
-        android:label="Person Details" />
+        android:label="Person Details" >
+        <argument
+            android:name="selectedUserUUID"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
 </navigation>

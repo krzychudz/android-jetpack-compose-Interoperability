@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import coil.annotation.ExperimentalCoilApi
@@ -20,7 +21,7 @@ class ComposeFragment: Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    private val viewModel by viewModels<ComposeFragmentViewModel> { viewModelFactory }
+    private val viewModel by activityViewModels<ComposeFragmentViewModel> { viewModelFactory }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

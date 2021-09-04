@@ -2,21 +2,17 @@ package com.example.composeintegration.fragments.compose.people_list
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.composeintegration.di.repositories.UserRepository
 import com.example.composeintegration.network.models.User
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-class ComposeFragmentViewModel @Inject constructor(
+class ComposeFragmentViewModel constructor(
     val userRepository: UserRepository
 ): ViewModel() {
+
     private val _peopleData: MutableState<PeopleDataUiState> = mutableStateOf(PeopleDataUiState.InProgress)
     val peopleData: State<PeopleDataUiState> = _peopleData
 
@@ -47,6 +43,11 @@ class ComposeFragmentViewModel @Inject constructor(
         _navigateToState.value = NavigateToState.Initialized
     }
 
+    fun getPersonByUUID(personUUID: String?): User? {
+        val peopleList = (_peopleData.value as? PeopleDataUiState.Success)?.users
+        return peopleList?.find { person -> person.login?.uuid == personUUID }
+    }
+
     sealed class PeopleDataUiState {
         data class Success(val users: List<User>?): PeopleDataUiState()
         data class Error(val exception: Throwable): PeopleDataUiState()
@@ -55,6 +56,6 @@ class ComposeFragmentViewModel @Inject constructor(
 
     sealed class NavigateToState {
         object Initialized: NavigateToState()
-        object ToDetailsFragment: NavigateToState()
+        data class ToDetailsFragment(val selectedPersonUUID: String? = null): NavigateToState()
     }
 }

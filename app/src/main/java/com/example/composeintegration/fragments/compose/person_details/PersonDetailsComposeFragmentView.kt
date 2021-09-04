@@ -4,10 +4,11 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import com.example.composeintegration.composables.Header
+import com.example.composeintegration.network.models.User
 
 @Composable
-fun PersonDetailsComposeScreen() {
+fun PersonDetailsComposeScreen(userData: User?) {
     Column() {
-        Header(text = "test")
+        Header(text = userData?.name?.first ?: "Unknown")
     }
 }
