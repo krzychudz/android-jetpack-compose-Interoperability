@@ -15,6 +15,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ChevronLeft
 import androidx.compose.material.icons.filled.Upload
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
@@ -26,6 +27,7 @@ import coil.compose.rememberImagePainter
 import com.example.composeintegration.R
 import com.example.composeintegration.composables.PlainHeader
 import com.example.composeintegration.network.models.User
+import com.example.composeintegration.network.models.UserName
 
 @ExperimentalAnimationApi
 @Composable
@@ -60,10 +62,10 @@ fun PersonOverview(userData: User?) {
                         }
                     ),
                     contentDescription = "Person image",
-                    modifier = Modifier.size(128.dp),
+                    modifier = Modifier.size(100.dp),
                 )
             }
-            Column(modifier = Modifier.padding(horizontal = 4.dp, vertical = 2.dp)) {
+            Column(modifier = Modifier.padding(4.dp)) {
                 val userNameData = userData?.name
                 Text(
                     text = "${userNameData?.first} ${userNameData?.last}",
@@ -78,7 +80,7 @@ fun PersonOverview(userData: User?) {
 @ExperimentalAnimationApi
 @Composable
 fun AdditionalDataSection(userData: User?) {
-    var isAdditionalInfoExpanded by remember { mutableStateOf(false) }
+    var isAdditionalInfoExpanded by rememberSaveable { mutableStateOf(false) }
 
     val userNameData = userData?.name
     val chevronAngle: Float by animateFloatAsState(
@@ -95,26 +97,40 @@ fun AdditionalDataSection(userData: User?) {
         shape = RoundedCornerShape(topStart = 6.dp, topEnd = 6.dp)
     ) {
         Column {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .width(16.dp)
-                    .padding(8.dp),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text("${userNameData?.first} ${userNameData?.last}")
-                IconButton(
-                    onClick = { isAdditionalInfoExpanded = !isAdditionalInfoExpanded },
-                    modifier = Modifier.rotate(chevronAngle)
-                ) {
-                    Icon(Icons.Filled.ChevronLeft, "Chevron")
-                }
+            AdditionalDataSectionHeader(userNameData = userNameData, chevronAngle = chevronAngle) {
+                isAdditionalInfoExpanded = !isAdditionalInfoExpanded
             }
             Divider(color = Color.Black, thickness = 1.dp)
             AnimatedVisibility(visible = isAdditionalInfoExpanded) {
-                Text("Tewst12121")
+                AdditionalDataInfoSubsection(userData)
             }
         }
+    }
+}
+
+@Composable
+fun AdditionalDataSectionHeader(userNameData: UserName?, chevronAngle: Float, onChevronClicked: () -> Unit) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .width(16.dp)
+            .padding(8.dp),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text("${userNameData?.first} ${userNameData?.last}")
+        IconButton(
+            onClick = onChevronClicked,
+            modifier = Modifier.rotate(chevronAngle)
+        ) {
+            Icon(Icons.Filled.ChevronLeft, "Chevron")
+        }
+    }
+}
+
+@Composable
+fun AdditionalDataInfoSubsection(userData: User?) {
+    Column(modifier = Modifier.padding(8.dp)) {
+        Text("test")
     }
 }
