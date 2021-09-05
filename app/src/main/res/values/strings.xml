@@ -14,4 +14,11 @@
     <string name="general_error">Something went wrong: %1$s</string>
     <string name="overview_header">Overview</string>
     <string name="extra_info_header">Additional Info</string>
+    <string name="extra_info_email">Email: %1$s</string>
+    <string name="extra_info_phone">Phone: %1$s</string>
+    <string name="extra_info_location">Location</string>
+    <string name="extra_info_location_city">City: %1$s</string>
+    <string name="extra_info_location_state">State: %1$s</string>
+    <string name="extra_info_location_post_code">Post Code: %1$s</string>
+    <string name="extra_info_unknown">Unknown</string>
 </resources>

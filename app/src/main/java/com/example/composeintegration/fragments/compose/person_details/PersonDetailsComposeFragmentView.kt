@@ -20,12 +20,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberImagePainter
 import com.example.composeintegration.R
 import com.example.composeintegration.composables.PlainHeader
+import com.example.composeintegration.composables.TextWithDefaultValue
 import com.example.composeintegration.network.models.User
 import com.example.composeintegration.network.models.UserName
 
@@ -109,7 +111,11 @@ fun AdditionalDataSection(userData: User?) {
 }
 
 @Composable
-fun AdditionalDataSectionHeader(userNameData: UserName?, chevronAngle: Float, onChevronClicked: () -> Unit) {
+fun AdditionalDataSectionHeader(
+    userNameData: UserName?,
+    chevronAngle: Float,
+    onChevronClicked: () -> Unit
+) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -130,7 +136,39 @@ fun AdditionalDataSectionHeader(userNameData: UserName?, chevronAngle: Float, on
 
 @Composable
 fun AdditionalDataInfoSubsection(userData: User?) {
+    val userLocationData = userData?.location
+
     Column(modifier = Modifier.padding(8.dp)) {
-        Text("test")
+        TextWithDefaultValue(
+            resId = R.string.extra_info_email,
+            args = userData?.email,
+            modifier = Modifier.padding(vertical = 4.dp)
+        )
+        TextWithDefaultValue(
+            resId = R.string.extra_info_phone,
+            args = userData?.phone,
+            modifier = Modifier.padding(vertical = 4.dp)
+        )
+        Divider(
+            color = Color.LightGray,
+            thickness = 1.dp,
+            modifier = Modifier.padding(top = 12.dp, bottom = 12.dp, end = 16.dp)
+        )
+        Text(text = stringResource(id = R.string.extra_info_location), fontSize = 20.sp)
+        TextWithDefaultValue(
+            resId = R.string.extra_info_location_city,
+            args = userLocationData?.city,
+            modifier = Modifier.padding(vertical = 4.dp)
+        )
+        TextWithDefaultValue(
+            resId = R.string.extra_info_location_state,
+            args = userLocationData?.state,
+            modifier = Modifier.padding(vertical = 4.dp)
+        )
+        TextWithDefaultValue(
+            resId = R.string.extra_info_location_post_code,
+            args = userLocationData?.postcode,
+            modifier = Modifier.padding(vertical = 4.dp)
+        )
     }
 }
