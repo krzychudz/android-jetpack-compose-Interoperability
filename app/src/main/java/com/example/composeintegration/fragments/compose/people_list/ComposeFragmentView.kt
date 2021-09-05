@@ -32,7 +32,7 @@ class UserPreviewProvider : PreviewParameterProvider<User> {
     override val values: Sequence<User>
         get() = sequenceOf(User(
             UserName("First", "Last"),
-            UserPicture(null),
+            UserPicture(null, null),
             "tmpEmail@email.com",
             null,
             null,

@@ -25,3 +25,8 @@ class StringPreviewProvider : PreviewParameterProvider<String> {
 fun Header(@PreviewParameter(StringPreviewProvider::class) text: String) {
     Text(text,fontSize = 18.sp, modifier = Modifier.fillMaxWidth().background(color = Color.LightGray).padding(16.dp), fontWeight = FontWeight.Black)
 }
+
+@Composable
+fun PlainHeader(text: String, modifier: Modifier = Modifier) {
+    Text(text, modifier = modifier.padding(bottom = 6.dp), fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
+}

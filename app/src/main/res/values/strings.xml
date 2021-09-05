@@ -12,4 +12,6 @@
 
     <string name="all_people_header">All People</string>
     <string name="general_error">Something went wrong: %1$s</string>
+    <string name="overview_header">Overview</string>
+    <string name="extra_info_header">Additional Info</string>
 </resources>
