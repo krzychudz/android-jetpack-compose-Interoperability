@@ -113,7 +113,7 @@ fun Person(@PreviewParameter(UserPreviewProvider::class) data: User, onPressedCa
         Row() {
             Image(
                 painter = rememberImagePainter(
-                    data.picture?.medium,
+                    data.picture?.large,
                     builder = {
                         placeholder(R.drawable.user_placeholder)
                     }
