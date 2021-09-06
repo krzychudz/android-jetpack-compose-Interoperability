@@ -1,5 +1,6 @@
 package com.example.composeintegration
 
+import android.content.Intent
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +11,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
 import com.example.composeintegration.databinding.ActivityMainBinding
+import com.example.feature_settings.SettingsActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -36,7 +38,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.action_settings -> true
+            R.id.action_settings -> {
+                val settingsIntent = Intent(this, SettingsActivity::class.java)
+                startActivity(settingsIntent)
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
