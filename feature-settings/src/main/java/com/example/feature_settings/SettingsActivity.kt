@@ -8,6 +8,11 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavGraphBuilder
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.example.feature_settings.route.Routes
 import com.example.feature_settings.ui.theme.ComposeIntegrationTheme
 
 class SettingsActivity : ComponentActivity() {
@@ -15,24 +20,24 @@ class SettingsActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             ComposeIntegrationTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colors.background) {
-                    Greeting("Android")
+                val navController = rememberNavController()
+                NavHost(navController = navController, startDestination = Routes.Settings) {
+                    createSettingsDestination()
+                    createAboutDestination()
                 }
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
+fun NavGraphBuilder.createSettingsDestination() {
+    composable(route = Routes.Settings) {
+        Text("Settings")
+    }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    ComposeIntegrationTheme {
-        Greeting("Android")
+fun NavGraphBuilder.createAboutDestination() {
+    composable(route = Routes.About) {
+        Text("About")
     }
 }
