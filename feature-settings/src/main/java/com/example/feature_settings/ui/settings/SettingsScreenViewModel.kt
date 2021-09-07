@@ -1,14 +1,10 @@
 package com.example.feature_settings.ui.settings
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 
 class SettingsScreenViewModel: ViewModel() {
-    init {
-        Log.d("ctx", "init")
-    }
 
-    fun a() {
-
-    }
+    val firstSection = (1..10).map { "First Section Element $it" }
+    val secondSection = (1..10).map { "Second Section Element $it" }
+    val thirdSection = (1..15).map { "Third Section Element $it" }
 }

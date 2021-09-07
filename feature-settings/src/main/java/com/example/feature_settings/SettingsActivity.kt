@@ -4,6 +4,7 @@ import android.app.Activity
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material.Text
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.ViewModelProvider
@@ -19,6 +20,7 @@ import com.example.feature_settings.ui.theme.ComposeIntegrationTheme
 
 class SettingsActivity : ComponentActivity() {
 
+    @ExperimentalFoundationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -33,6 +35,7 @@ class SettingsActivity : ComponentActivity() {
     }
 }
 
+@ExperimentalFoundationApi
 fun NavGraphBuilder.createSettingsDestination(navController: NavController) {
     composable(route = Routes.Settings) {
         val viewModel = ViewModelProvider(LocalContext.current as SettingsActivity)[SettingsScreenViewModel::class.java]
@@ -43,14 +46,14 @@ fun NavGraphBuilder.createSettingsDestination(navController: NavController) {
 }
 
 fun NavGraphBuilder.createAboutDestination() {
-    composable(route = com.example.common_data.routes.Routes.About) {
+    composable(route = Routes.About) {
         Text("About")
     }
 }
 
 fun NavController.navigate(routeName: String) {
     when (routeName) {
-        com.example.common_data.routes.Routes.GoBack -> if (!navigateUp()) (this.context as? Activity)?.finish()
+        Routes.GoBack -> if (!navigateUp()) (this.context as? Activity)?.finish()
         else -> navigate(routeName)
     }
 }

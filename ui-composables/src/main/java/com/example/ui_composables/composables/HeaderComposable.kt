@@ -8,6 +8,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
@@ -28,8 +30,9 @@ fun Header(@PreviewParameter(StringPreviewProvider::class) text: String) {
     Text(
         text, fontSize = 18.sp, modifier = Modifier
             .fillMaxWidth()
-            .background(color = Color.LightGray)
-            .padding(16.dp), fontWeight = FontWeight.Black
+            .background(color = Color(0xffdae0e3))
+            .padding(16.dp), fontWeight = FontWeight.Medium,
+        style = TextStyle(Color(0xff3d4548))
     )
 }
 
