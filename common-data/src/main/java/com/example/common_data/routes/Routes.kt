@@ -1,4 +1,4 @@
-package com.example.feature_settings.route
+package com.example.common_data.routes
 
 object Routes {
     const val Settings = "/settings"

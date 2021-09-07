@@ -9,7 +9,7 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.example.feature_settings.route.Routes
+import com.example.common_data.routes.Routes
 
 @Composable
 fun SettingsScreen(viewModel: SettingsScreenViewModel, navigateTo: (routeName: String) -> Unit) {
@@ -18,7 +18,7 @@ fun SettingsScreen(viewModel: SettingsScreenViewModel, navigateTo: (routeName: S
             TopAppBar(
                 title = { Text(text = "Settings Screen") },
                 navigationIcon = { IconButton(onClick = {
-                    navigateTo(Routes.GoBack)
+                    navigateTo(com.example.common_data.routes.Routes.GoBack)
                 }) {
                     Icon(Icons.Filled.ArrowBack, "Chevron")
                 } }
@@ -31,7 +31,7 @@ fun SettingsScreen(viewModel: SettingsScreenViewModel, navigateTo: (routeName: S
                 .fillMaxWidth(),
             contentAlignment = Alignment.Center
         ) {
-            Button(onClick = { navigateTo(Routes.About) }) {
+            Button(onClick = { navigateTo(com.example.common_data.routes.Routes.About) }) {
                 Text(text = "To About")
             }
         }

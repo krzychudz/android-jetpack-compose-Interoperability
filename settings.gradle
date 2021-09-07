@@ -10,3 +10,4 @@ rootProject.name = "ComposeIntegration"
 include ':app'
 include ':feature-settings'
 include ':ui-composables'
+include ':common-data'
