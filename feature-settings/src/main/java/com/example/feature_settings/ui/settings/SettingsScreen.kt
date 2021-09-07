@@ -3,27 +3,19 @@ package com.example.feature_settings.ui.settings
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.Button
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.example.common_data.routes.Routes
+import com.example.ui_composables.composables.appbar.AppBar
 
 @Composable
 fun SettingsScreen(viewModel: SettingsScreenViewModel, navigateTo: (routeName: String) -> Unit) {
     Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text(text = "Settings Screen") },
-                navigationIcon = { IconButton(onClick = {
-                    navigateTo(com.example.common_data.routes.Routes.GoBack)
-                }) {
-                    Icon(Icons.Filled.ArrowBack, "Chevron")
-                } }
-            )
-        }
+        topBar = { AppBar(title = "Settings") { navigateTo(Routes.GoBack) } }
     ) {
         Box(
             modifier = Modifier
