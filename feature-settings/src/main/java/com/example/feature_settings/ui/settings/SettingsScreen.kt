@@ -21,14 +21,18 @@ import com.example.ui_composables.composables.appbar.AppBar
 @ExperimentalFoundationApi
 @Composable
 fun SettingsScreen(viewModel: SettingsScreenViewModel, navigateTo: (routeName: String) -> Unit) {
-
-
     Scaffold(
         topBar = { AppBar(title = "Settings") { navigateTo(Routes.GoBack) } }
     ) {
         LazyColumn(modifier = Modifier
             .fillMaxWidth()
             .fillMaxHeight()) {
+            stickyHeader {
+                Header(text = "About Section")
+            }
+            item {
+                SettingsItem(itemTitle = "About") { navigateTo(Routes.About) }
+            }
             stickyHeader {
                 Header(text = "First Section")
             }
@@ -52,7 +56,10 @@ fun SettingsScreen(viewModel: SettingsScreenViewModel, navigateTo: (routeName: S
 }
 
 @Composable
-fun SettingsItem(itemTitle: String) {
-    Text(text = itemTitle, modifier = Modifier.clickable { return@clickable }.fillMaxWidth().padding(16.dp))
+fun SettingsItem(itemTitle: String, onClick: (() -> Unit)? = null) {
+    Text(text = itemTitle, modifier = Modifier
+        .clickable { onClick?.invoke() }
+        .fillMaxWidth()
+        .padding(16.dp))
     Divider(thickness = 1.dp, color = Color.LightGray)
 }
