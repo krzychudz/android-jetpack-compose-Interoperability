@@ -1,5 +1,6 @@
 package com.example.feature_settings
 
+import android.app.Activity
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
@@ -16,6 +17,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelLazy
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.NavHost
@@ -46,7 +48,7 @@ fun NavGraphBuilder.createSettingsDestination(navController: NavController) {
     composable(route = Routes.Settings) {
         val viewModel = ViewModelProvider(LocalContext.current as SettingsActivity)[SettingsScreenViewModel::class.java]
         SettingsScreen(viewModel = viewModel) { routeName ->
-            navController.navigate(routeName)
+            navController.navigate(routeName = routeName)
         }
     }
 }
@@ -54,5 +56,12 @@ fun NavGraphBuilder.createSettingsDestination(navController: NavController) {
 fun NavGraphBuilder.createAboutDestination() {
     composable(route = Routes.About) {
         Text("About")
+    }
+}
+
+fun NavController.navigate(routeName: String) {
+    when (routeName) {
+        Routes.GoBack -> if (!navigateUp()) (this.context as? Activity)?.finish()
+        else -> navigate(routeName)
     }
 }
