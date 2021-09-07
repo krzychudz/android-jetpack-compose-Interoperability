@@ -21,8 +21,8 @@ import androidx.navigation.NavController
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import com.example.composeintegration.R
-import com.example.composeintegration.composables.CenterContent
-import com.example.composeintegration.composables.Header
+import com.example.ui_composables.composables.CenterContent
+import com.example.ui_composables.composables.Header
 import com.example.composeintegration.fragments.compose.people_list.ComposeFragmentViewModel.PeopleDataUiState
 import com.example.composeintegration.network.models.User
 import com.example.composeintegration.network.models.UserName

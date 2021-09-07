@@ -1,4 +1,4 @@
-package com.example.composeintegration.composables
+package com.example.ui_composables.composables
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -14,7 +14,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.composeintegration.R
+import com.example.ui_composables.R
 
 class StringPreviewProvider : PreviewParameterProvider<String> {
     override val values: Sequence<String>
@@ -47,9 +47,7 @@ fun PlainHeader(text: String, modifier: Modifier = Modifier) {
 fun TextWithDefaultValue(resId: Int, args: Any? = null, modifier: Modifier) {
     Text(
         text = stringResource(
-            id = resId, args ?: stringResource(
-                id = R.string.extra_info_unknown
-            )
+            id = resId, args ?: "Unknown"
         ), modifier = modifier
     )
 }
