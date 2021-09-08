@@ -33,4 +33,7 @@
     <string name="about_button_state_label">Push the button to increment counter</string>
     <string name="about_fragment_info">Push the button below to go to next fragment and pass counter value</string>
     <string name="about_fragment_button">Go to next screen</string>
+
+    <string name="settings_counter_display_app_bar_title">Counter Display</string>
+    <string name="settings_counter_display_info">Counter state is: %1$s</string>
 </resources>

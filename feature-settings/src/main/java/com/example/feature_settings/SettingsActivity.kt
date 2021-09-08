@@ -17,6 +17,7 @@ import androidx.navigation.compose.navArgument
 import androidx.navigation.compose.rememberNavController
 import com.example.common_data.routes.Routes
 import com.example.feature_settings.ui.about.AboutScreen
+import com.example.feature_settings.ui.counter_display.CounterDisplayScreen
 import com.example.feature_settings.ui.settings.SettingsScreen
 import com.example.feature_settings.ui.settings.SettingsScreenViewModel
 import com.example.feature_settings.ui.theme.ComposeIntegrationTheme
@@ -73,7 +74,10 @@ fun NavGraphBuilder.createCounterDisplayScreen(navController: NavController) {
         route = Routes.AboutCounter,
         arguments = listOf(navArgument("counter_value") { type = NavType.IntType })
     ) {
-        Text("Clicked: ${it.arguments?.getInt("counter_value")}")
+        val counterState = it.arguments?.getInt("counter_value")
+        CounterDisplayScreen(counterData = counterState ?: 0) { routeName ->
+            navController.navigate(routeName = routeName)
+        }
     }
 }
 
