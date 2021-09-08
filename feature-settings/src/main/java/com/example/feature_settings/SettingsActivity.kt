@@ -21,6 +21,7 @@ import com.example.feature_settings.ui.counter_display.CounterDisplayScreen
 import com.example.feature_settings.ui.settings.SettingsScreen
 import com.example.feature_settings.ui.settings.SettingsScreenViewModel
 import com.example.feature_settings.ui.terms_and_conditions.TermsAndConditionsScreen
+import com.example.feature_settings.ui.terms_and_conditions.TermsAndConditionsViewModel
 import com.example.feature_settings.ui.theme.ComposeIntegrationTheme
 
 class SettingsActivity : ComponentActivity() {
@@ -66,7 +67,9 @@ fun NavGraphBuilder.createAboutDestination(navController: NavController) {
 
 fun NavGraphBuilder.createTermsAndConditionsDestination(navController: NavController) {
     composable(route = Routes.TermsAndConditions) {
-        TermsAndConditionsScreen() { routeName ->
+        val viewModel =
+            ViewModelProvider(LocalContext.current as SettingsActivity)[TermsAndConditionsViewModel::class.java]
+        TermsAndConditionsScreen(viewModel = viewModel) { routeName ->
             navController.navigate(routeName = routeName)
         }
     }
