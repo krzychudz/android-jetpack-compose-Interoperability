@@ -1,5 +1,6 @@
 package com.example.feature_settings.ui.about
 
+import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.Text
@@ -13,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.common_data.R
 import com.example.common_data.routes.Routes
+import com.example.common_data.routes.withArguments
 import com.example.ui_composables.composables.screen.AppBarScaffold
 
 @Composable
@@ -41,7 +43,10 @@ fun AboutScreenContent(navigateTo: (routeName: String) -> Unit) {
         ButtonCounterSection(counterValue = counterState, onClick = { counterState++ })
         Spacer(modifier = Modifier.height(16.dp))
         NextFragmentSection {
-           navigateTo(Routes.AboutCounter)
+            val route = Routes.AboutCounter.withArguments(mapOf(
+                "counter_value" to counterState
+            ))
+            navigateTo(route)
         }
     }
 }
