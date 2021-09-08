@@ -12,6 +12,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.common_data.R
+import com.example.common_data.routes.Routes
 import com.example.ui_composables.composables.screen.AppBarScaffold
 
 @Composable
@@ -40,23 +41,23 @@ fun AboutScreenContent(navigateTo: (routeName: String) -> Unit) {
         ButtonCounterSection(counterValue = counterState, onClick = { counterState++ })
         Spacer(modifier = Modifier.height(16.dp))
         NextFragmentSection {
-           // TODO navigateTo
+           navigateTo(Routes.AboutCounter)
         }
     }
 }
 
 @Composable
 fun ButtonCounterSection(counterValue: Int, onClick: () -> Unit) {
-    Text(text = "The button has been pushed $counterValue times", fontSize = 20.sp)
+    Text(text = stringResource(id = R.string.about_counter_state, counterValue.toString()), fontSize = 20.sp)
     Button(modifier = Modifier.padding(16.dp), onClick = onClick) {
-        Text(text = "Push the button to increment counter")
+        Text(text = stringResource(id = R.string.about_button_state_label))
     }
 }
 
 @Composable
 fun NextFragmentSection(onNavigateClick: () -> Unit) {
-    Text(text = "Push the button below to go to next fragment and pass counter value", textAlign = TextAlign.Center)
+    Text(text = stringResource(id = R.string.about_fragment_info), textAlign = TextAlign.Center)
     Button(modifier = Modifier.padding(16.dp), onClick = onNavigateClick) {
-        Text(modifier = Modifier.padding(8.dp), text = "Go to next fragment")
+        Text(modifier = Modifier.padding(8.dp), text = stringResource(id = R.string.about_fragment_button))
     }
 }

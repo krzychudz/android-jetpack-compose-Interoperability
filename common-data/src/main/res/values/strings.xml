@@ -28,4 +28,9 @@
     <string name="settings_second_section_header">Second Section</string>
     <string name="settings_third_section_header">Third Section</string>
     <string name="settings_terms_and_conditions">Terms And Conditions</string>
+
+    <string name="about_counter_state">The button has been pushed %1$s times</string>
+    <string name="about_button_state_label">Push the button to increment counter</string>
+    <string name="about_fragment_info">Push the button below to go to next fragment and pass counter value</string>
+    <string name="about_fragment_button">Go to next screen</string>
 </resources>
