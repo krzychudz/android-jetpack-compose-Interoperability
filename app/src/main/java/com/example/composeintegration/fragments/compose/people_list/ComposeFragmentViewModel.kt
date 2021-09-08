@@ -5,6 +5,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.common_data.result.ResultState
 import com.example.composeintegration.di.repositories.UserRepository
 import com.example.composeintegration.network.models.User
 import kotlinx.coroutines.launch
@@ -13,8 +14,8 @@ class ComposeFragmentViewModel constructor(
     val userRepository: UserRepository
 ): ViewModel() {
 
-    private val _peopleData: MutableState<PeopleDataUiState> = mutableStateOf(PeopleDataUiState.InProgress)
-    val peopleData: State<PeopleDataUiState> = _peopleData
+    private val _peopleData: MutableState<ResultState<List<User>>> = mutableStateOf(ResultState.InProgress)
+    val peopleData: State<ResultState<List<User>>> = _peopleData
 
     private val _navigateToState: MutableState<NavigateToState> = mutableStateOf(NavigateToState.Initialized)
     val navigateToState: State<NavigateToState> = _navigateToState
@@ -23,12 +24,12 @@ class ComposeFragmentViewModel constructor(
     fun getUserData() {
         viewModelScope.launch {
             kotlin.runCatching {
-                _peopleData.value = PeopleDataUiState.InProgress
+                _peopleData.value = ResultState.InProgress
                 userRepository.getUsers()
             }.onSuccess {
-                _peopleData.value = PeopleDataUiState.Success(it)
+                _peopleData.value = ResultState.Success(it)
             }.onFailure {
-                _peopleData.value = PeopleDataUiState.Error(it)
+                _peopleData.value = ResultState.Error(it)
             }
         }
     }
@@ -44,14 +45,8 @@ class ComposeFragmentViewModel constructor(
     }
 
     fun getPersonByUUID(personUUID: String?): User? {
-        val peopleList = (_peopleData.value as? PeopleDataUiState.Success)?.users
+        val peopleList = (_peopleData.value as? ResultState.Success)?.data
         return peopleList?.find { person -> person.login?.uuid == personUUID }
-    }
-
-    sealed class PeopleDataUiState {
-        data class Success(val users: List<User>?): PeopleDataUiState()
-        data class Error(val exception: Throwable): PeopleDataUiState()
-        object InProgress : PeopleDataUiState()
     }
 
     sealed class NavigateToState {

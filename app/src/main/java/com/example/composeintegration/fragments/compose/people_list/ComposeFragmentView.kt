@@ -20,10 +20,10 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
+import com.example.common_data.result.ResultState
 import com.example.composeintegration.R
 import com.example.ui_composables.composables.CenterContent
 import com.example.ui_composables.composables.Header
-import com.example.composeintegration.fragments.compose.people_list.ComposeFragmentViewModel.PeopleDataUiState
 import com.example.composeintegration.network.models.User
 import com.example.composeintegration.network.models.UserName
 import com.example.composeintegration.network.models.UserPicture
@@ -55,7 +55,7 @@ fun ComposeScreen(viewModel: ComposeFragmentViewModel? = null, navController: Na
     }
 
     LaunchedEffect(key1 = Unit) {
-        if (peopleDataState !is PeopleDataUiState.Success) {
+        if (peopleDataState !is ResultState.Success<*>) {
             viewModel?.getUserData()
         }
     }
@@ -68,17 +68,19 @@ fun ComposeScreen(viewModel: ComposeFragmentViewModel? = null, navController: Na
 
 @ExperimentalCoilApi
 @Composable
-fun PeopleDataSection(peopleDataState: PeopleDataUiState?, viewModel: ComposeFragmentViewModel?) {
+fun PeopleDataSection(peopleDataState: ResultState<List<User>>?, viewModel: ComposeFragmentViewModel?) {
 
     when (peopleDataState) {
-        is PeopleDataUiState.InProgress -> CenterContent {
+        is ResultState.InProgress -> CenterContent {
             CircularProgressIndicator()
         }
-        is PeopleDataUiState.Error -> CenterContent {
+        is ResultState.Error -> CenterContent {
             Text(text = stringResource(id = R.string.general_error, peopleDataState.exception.message ?: ""))
         }
-        is PeopleDataUiState.Success -> {
-            peopleDataState.users?.let { PeopleDataList(data = it, viewModel) }
+        is ResultState.Success -> {
+            peopleDataState.data?.let {
+                PeopleDataList(it, viewModel)
+            }
         }
     }
 }

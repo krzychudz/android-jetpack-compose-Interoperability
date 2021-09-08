@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.common_data.R
+import com.example.common_data.result.ResultState
 import com.example.ui_composables.composables.CenterContent
 import com.example.ui_composables.composables.screen.AppBarScaffold
 
@@ -33,7 +34,7 @@ fun TermsAndConditionsScreen(
             ResultState.InProgress -> CenterContent {
                 CircularProgressIndicator()
             }
-            is ResultState.Success -> TextSection(text = dataResponse.data)
+            is ResultState.Success -> TextSection(text = dataResponse.data ?: "")
         }
     }
 }

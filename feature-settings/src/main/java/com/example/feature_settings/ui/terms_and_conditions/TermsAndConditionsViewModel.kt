@@ -6,9 +6,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.common_data.result.ResultState
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import java.lang.Exception
 
 class TermsAndConditionsViewModel: ViewModel() {
 
@@ -24,10 +24,4 @@ class TermsAndConditionsViewModel: ViewModel() {
             _termsAndConditionData.value = ResultState.Success(data)
         }
     }
-}
-
-sealed class ResultState<out T : Any> {
-    data class Success<out T : Any>(val data: T): ResultState<T>()
-    data class Error(val exception: Exception): ResultState<Nothing>()
-    object InProgress : ResultState<Nothing>()
 }
