@@ -13,8 +13,10 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.common_data.routes.Routes
+import com.example.common_data.R
 import com.example.ui_composables.composables.Header
 import com.example.ui_composables.composables.appbar.AppBar
 
@@ -22,31 +24,31 @@ import com.example.ui_composables.composables.appbar.AppBar
 @Composable
 fun SettingsScreen(viewModel: SettingsScreenViewModel, navigateTo: (routeName: String) -> Unit) {
     Scaffold(
-        topBar = { AppBar(title = "Settings") { navigateTo(Routes.GoBack) } }
+        topBar = { AppBar(title = stringResource(id = R.string.settings_app_bar_title)) { navigateTo(Routes.GoBack) } }
     ) {
         LazyColumn(modifier = Modifier
             .fillMaxWidth()
             .fillMaxHeight()) {
             stickyHeader {
-                Header(text = "About Section")
+                Header(text = stringResource(id = R.string.settings_about_header))
             }
             item {
                 SettingsItem(itemTitle = "About") { navigateTo(Routes.About) }
             }
             stickyHeader {
-                Header(text = "First Section")
+                Header(text = stringResource(id = R.string.settings_first_section_header))
             }
             items(viewModel.firstSection, itemContent = { item ->
                 SettingsItem(item)
             })
             stickyHeader {
-                Header(text = "Second Section")
+                Header(text = stringResource(id = R.string.settings_second_section_header))
             }
             items(viewModel.secondSection, itemContent = { item ->
                 SettingsItem(item)
             })
             stickyHeader {
-                Header(text = "Third Section")
+                Header(text = stringResource(id = R.string.settings_third_section_header))
             }
             items(viewModel.thirdSection, itemContent = { item ->
                 SettingsItem(item)

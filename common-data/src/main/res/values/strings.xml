@@ -21,4 +21,10 @@
     <string name="extra_info_location_state">State: %1$s</string>
     <string name="extra_info_location_post_code">Post Code: %1$s</string>
     <string name="extra_info_unknown">Unknown</string>
+
+    <string name="settings_app_bar_title">Settings</string>
+    <string name="settings_about_header">Settings</string>
+    <string name="settings_first_section_header">First Section</string>
+    <string name="settings_second_section_header">First Section</string>
+    <string name="settings_third_section_header">First Section</string>
 </resources>
