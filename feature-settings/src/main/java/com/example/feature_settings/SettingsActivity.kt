@@ -20,6 +20,7 @@ import com.example.feature_settings.ui.about.AboutScreen
 import com.example.feature_settings.ui.counter_display.CounterDisplayScreen
 import com.example.feature_settings.ui.settings.SettingsScreen
 import com.example.feature_settings.ui.settings.SettingsScreenViewModel
+import com.example.feature_settings.ui.terms_and_conditions.TermsAndConditionsScreen
 import com.example.feature_settings.ui.theme.ComposeIntegrationTheme
 
 class SettingsActivity : ComponentActivity() {
@@ -65,7 +66,9 @@ fun NavGraphBuilder.createAboutDestination(navController: NavController) {
 
 fun NavGraphBuilder.createTermsAndConditionsDestination(navController: NavController) {
     composable(route = Routes.TermsAndConditions) {
-        Text("TC")
+        TermsAndConditionsScreen() { routeName ->
+            navController.navigate(routeName = routeName)
+        }
     }
 }
 

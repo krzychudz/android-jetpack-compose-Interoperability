@@ -1,7 +1,5 @@
 package com.example.common_data.routes
 
-import android.util.Log
-
 object Routes {
     const val Settings = "/settings"
     const val About = "/settings/about"
