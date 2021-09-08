@@ -8,27 +8,29 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Divider
-import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.example.common_data.routes.Routes
 import com.example.common_data.R
+import com.example.common_data.routes.Routes
 import com.example.ui_composables.composables.Header
-import com.example.ui_composables.composables.appbar.AppBar
+import com.example.ui_composables.composables.screen.AppBarScaffold
 
 @ExperimentalFoundationApi
 @Composable
 fun SettingsScreen(viewModel: SettingsScreenViewModel, navigateTo: (routeName: String) -> Unit) {
-    Scaffold(
-        topBar = { AppBar(title = stringResource(id = R.string.settings_app_bar_title)) { navigateTo(Routes.GoBack) } }
+    AppBarScaffold(
+        appBarTitle = stringResource(id = R.string.settings_app_bar_title),
+        navigateTo = navigateTo
     ) {
-        LazyColumn(modifier = Modifier
-            .fillMaxWidth()
-            .fillMaxHeight()) {
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight()
+        ) {
             stickyHeader {
                 Header(text = stringResource(id = R.string.settings_about_header))
             }

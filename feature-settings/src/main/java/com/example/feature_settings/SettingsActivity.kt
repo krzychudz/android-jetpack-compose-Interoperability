@@ -14,6 +14,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.common_data.routes.Routes
+import com.example.feature_settings.ui.about.AboutScreen
 import com.example.feature_settings.ui.settings.SettingsScreen
 import com.example.feature_settings.ui.settings.SettingsScreenViewModel
 import com.example.feature_settings.ui.theme.ComposeIntegrationTheme
@@ -28,7 +29,7 @@ class SettingsActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 NavHost(navController = navController, startDestination = com.example.common_data.routes.Routes.Settings) {
                     createSettingsDestination(navController = navController)
-                    createAboutDestination()
+                    createAboutDestination(navController = navController)
                 }
             }
         }
@@ -45,9 +46,11 @@ fun NavGraphBuilder.createSettingsDestination(navController: NavController) {
     }
 }
 
-fun NavGraphBuilder.createAboutDestination() {
+fun NavGraphBuilder.createAboutDestination(navController: NavController) {
     composable(route = Routes.About) {
-        Text("About")
+        AboutScreen() { routeName ->
+            navController.navigate(routeName = routeName)
+        }
     }
 }
 
