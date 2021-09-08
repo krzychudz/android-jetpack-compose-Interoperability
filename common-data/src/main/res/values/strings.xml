@@ -25,6 +25,7 @@
     <string name="settings_app_bar_title">Settings</string>
     <string name="settings_about_header">About</string>
     <string name="settings_first_section_header">First Section</string>
-    <string name="settings_second_section_header">First Section</string>
-    <string name="settings_third_section_header">First Section</string>
+    <string name="settings_second_section_header">Second Section</string>
+    <string name="settings_third_section_header">Third Section</string>
+    <string name="settings_terms_and_conditions">Terms And Conditions</string>
 </resources>

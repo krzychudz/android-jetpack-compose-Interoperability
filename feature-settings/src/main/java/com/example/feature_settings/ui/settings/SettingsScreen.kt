@@ -35,7 +35,16 @@ fun SettingsScreen(viewModel: SettingsScreenViewModel, navigateTo: (routeName: S
                 Header(text = stringResource(id = R.string.settings_about_header))
             }
             item {
-                SettingsItem(itemTitle = "About") { navigateTo(Routes.About) }
+                SettingsItem(itemTitle = stringResource(id = R.string.settings_about_header)) {
+                    navigateTo(
+                        Routes.About
+                    )
+                }
+                SettingsItem(itemTitle = stringResource(id = R.string.settings_terms_and_conditions)) {
+                    navigateTo(
+                        Routes.TermsAndConditions
+                    )
+                }
             }
             stickyHeader {
                 Header(text = stringResource(id = R.string.settings_first_section_header))

@@ -30,6 +30,7 @@ class SettingsActivity : ComponentActivity() {
                 NavHost(navController = navController, startDestination = com.example.common_data.routes.Routes.Settings) {
                     createSettingsDestination(navController = navController)
                     createAboutDestination(navController = navController)
+                    createTermsAndConditionsDestination(navController = navController)
                 }
             }
         }
@@ -51,6 +52,12 @@ fun NavGraphBuilder.createAboutDestination(navController: NavController) {
         AboutScreen() { routeName ->
             navController.navigate(routeName = routeName)
         }
+    }
+}
+
+fun NavGraphBuilder.createTermsAndConditionsDestination(navController: NavController) {
+    composable(route = Routes.TermsAndConditions) {
+        Text("TC")
     }
 }
 
